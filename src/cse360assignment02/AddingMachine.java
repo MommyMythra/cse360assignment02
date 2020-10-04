@@ -5,12 +5,15 @@ package cse360assignment02;
  */
 public class AddingMachine {
     private int total;
+    private String history;
 
     /**
      * Constructor that instantiates any AddingMachine object
+     * Sets total to base 0 and history to output "0"
      */
     public AddingMachine () {
         total = 0;  // not needed - included for clarity
+        history = "0";
     }
 
     /**
@@ -18,21 +21,27 @@ public class AddingMachine {
      * @return the total of the program
      */
     public int getTotal () {
-        return 0;
+        return total;
     }
 
     /**
      * Adds the passed value to the total.
+     * Also updates the history string to keep the memory up to date
      * @param value added to the total
      */
     public void add (int value) {
+        total = total+value;
+        history=history+" + "+value;
     }
 
     /**
      * Subtracts the passed value from the total.
+     * Also updates the history string to keep the memory up to date
      * @param value being subtracted from the total
      */
     public void subtract (int value) {
+        total = total-value;
+        history=history+" - "+value;
     }
 
     /**
@@ -41,12 +50,23 @@ public class AddingMachine {
      * @return a string that represents the history of the transactions
      */
     public String toString () {
-        return "";
+        return history;
     }
 
     /**
-     * This empties out the "memory" of the program
+     * This empties out the "memory" of the program by setting total back to 0 and setting history back to "0"
      */
     public void clear() {
+        total=0;
+        history="0";
+    }
+
+    public static void main(String[] args){
+        AddingMachine myCalculator = new AddingMachine();
+        myCalculator.add (4);
+        myCalculator.subtract (2);
+        myCalculator.add(5);
+        System.out.println(myCalculator.toString());
+        System.out.println(myCalculator.getTotal());
     }
 }
